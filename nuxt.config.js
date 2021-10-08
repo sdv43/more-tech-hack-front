@@ -18,7 +18,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon-32x32.png' }
     ]
   },
 
@@ -57,6 +57,10 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    icon: {
+      source: 'static/app-launcher-icon.png',
+      purpose: ['any']
+    },
     manifest: {
       lang: 'en'
     }
