@@ -1,33 +1,22 @@
 <template>
-  <v-window :value='window' vertical class='fill-height' touchless>
-    <v-window-item value='main' class='fill-height'>
-      <CardAndButton @change-window='changeWindow($event)' />
-    </v-window-item>
-
-    <v-window-item value='stats' class='fill-height'>
-
-      <v-container class='d-flex justify-center align-center fill-height'>
-        <v-btn @click='window = "main"'>
-          вернуться назад
-        </v-btn>
-      </v-container>
-
-    </v-window-item>
-  </v-window>
+  <v-container class='fill-height d-flex justify-center align-center'>
+    <ul>
+      <li>
+        <nuxt-link to='/sign-in'>sign in</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to='/sign-up'>sign up</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to='/welcome'>welcome</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to='/game'>game</nuxt-link>
+      </li>
+    </ul>
+  </v-container>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      window: 'main'
-    }
-  },
-
-  methods: {
-    changeWindow(window) {
-      this.window = window
-    }
-  }
-}
+export default {}
 </script>

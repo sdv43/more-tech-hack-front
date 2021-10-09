@@ -42,11 +42,10 @@ export default {
   methods: {
     signIn() {
       try {
-        // todo make request to backend and save returned token
-
         if (this.email === 'demo' && this.password === 'demo') {
-          localStorage.setItem('user-token', 'demo-token')
-          this.$router.go('/')
+          this.$store.state.user.token = 'demo-token'
+          localStorage.setItem('user-token', this.$store.state.user.token)
+          this.$router.push('/welcome')
         } else {
           throw new Error('signIn() method not implemented')
         }
