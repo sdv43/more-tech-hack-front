@@ -8,6 +8,10 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setUserToken(state, payload) {
+    state.user.token = payload
+  },
+
   setUserStatus(state, payload) {
     state.user.status = payload
   },

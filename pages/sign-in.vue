@@ -43,8 +43,11 @@ export default {
     signIn() {
       try {
         if (this.email === 'demo' && this.password === 'demo') {
-          this.$store.state.user.token = 'demo-token'
-          localStorage.setItem('user-token', this.$store.state.user.token)
+          const token = 'demo-token'
+
+          localStorage.setItem('user-token', token)
+
+          this.$store.commit('setUserToken', token)
           this.$router.push('/welcome')
         } else {
           throw new Error('signIn() method not implemented')
