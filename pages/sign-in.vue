@@ -43,6 +43,7 @@ export default {
     signIn() {
       try {
         // todo make request to backend and save returned token
+
         if (this.email === 'demo' && this.password === 'demo') {
           localStorage.setItem('user-token', 'demo-token')
           this.$router.go('/')
