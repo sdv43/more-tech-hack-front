@@ -2,7 +2,7 @@
   <v-container fluid class='fill-height'>
     <v-row justify='center'>
       <v-col class='ma-8'>
-        <v-img :src='logoPath' max-width='180px' class='mx-auto mb-12'/>
+        <v-img :src='logoPath' max-width='180px' class='mx-auto mb-12' />
 
         <v-alert v-show='error' type='error'>
           {{ error }}
@@ -43,9 +43,12 @@ export default {
     signIn() {
       try {
         // todo make request to backend and save returned token
-
-        throw new Error('signIn() method not implemented')
-
+        if (this.email === 'demo' && this.password === 'demo') {
+          localStorage.setItem('user-token', 'demo-token')
+          this.$router.go('/')
+        } else {
+          throw new Error('signIn() method not implemented')
+        }
       } catch (e) {
         this.error = e.message
       }
