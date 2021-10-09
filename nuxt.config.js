@@ -1,6 +1,10 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  server: {
+    host: '0.0.0.0'
+  },
+
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -9,8 +13,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - more-tech-hack-front',
-    title: 'more-tech-hack-front',
+    titleTemplate: '%s - EasyMoney',
+    title: 'EasyMoney',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -57,12 +61,26 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    workbox: {
+      enabled: false,
+      dev: true,
+      runtimeCaching: [
+        {urlPattern: '/favicon-32x32.png'},
+        {urlPattern: 'https://cdn.jsdelivr.net/.*'},
+        {urlPattern: 'https://fonts.googleapis.com/.*'},
+      ]
+    },
     icon: {
       source: 'static/app-launcher-icon.png',
       purpose: ['any']
     },
     manifest: {
-      lang: 'en'
+      name: 'EasyMoney App',
+      short_name: 'EasyMoney',
+      description: 'С приложением EasyMoney Вы попадете в увлекательный мир инвестиций, где сможете научиться инвестировать правильно и прибыльно',
+      lang: 'en',
+      scope: '/',
+      start_url: '/',
     }
   },
 
