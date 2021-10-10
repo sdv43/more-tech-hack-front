@@ -25,4 +25,16 @@ export default class Api {
   userStatus() {
     return this.$axios.$get('/api/status')
   }
+
+  gamePullEvent() {
+    return this.$axios.$get('/api/get-next-event')
+  }
+
+  gamePushEventReaction(type, value) {
+    return this.$axios.$get(`/api/event-${type}`, {
+      params: {
+        value
+      }
+    })
+  }
 }

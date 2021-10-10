@@ -19,18 +19,18 @@
           <v-slider
             v-model='controls.value'
             label='Кол-во:'
-            thumb-label="always"
+            thumb-label='always'
             :min='event.controls.min'
             :max='event.controls.max'
           >
             <template #append>
               <v-text-field
-                v-model="controls.value"
+                v-model='controls.value'
                 hide-details
                 single-line
-                type="number"
-                class="mt-0 pt-0"
-                style="width: 30px"
+                type='number'
+                class='mt-0 pt-0'
+                style='width: 30px'
               ></v-text-field>
             </template>
           </v-slider>
@@ -96,7 +96,7 @@ export default {
   },
 
   async mounted() {
-    this.event = await this.pullEvent()
+    this.event = await this.$api.gamePullEvent()
   },
 
   methods: {
@@ -109,65 +109,37 @@ export default {
         this.$root.$emit('update-status')
 
         this.event = null
-        this.event = await this.pullEvent()
+        this.event = await this.$api.gamePullEvent()
       } catch (e) {
+        this.isActionsDisabled = false
         alert(e.message)
       }
     },
 
     pushEventReaction(action) {
-      // try {
-      //   let url
-      //
-      //   switch (action.text) {
-      //     case 'понял':
-      //       break
-      //     case 'принять':
-      //       url = '/api/event-ok'
-      //       break
-      //     case 'отклонить':
-      //       url = '/api/event-cancel'
-      //       break
-      //     case 'продать':
-      //       url = `/api/event-sell?value=${this.controls.value}`
-      //       break
-      //     case 'купить':
-      //       url = `/api/event-buy?value=${this.controls.value}`
-      //       break
-      //     default:
-      //       throw new Error('Unknown action')
-      //   }
-      //
-      //   if (url) {
-      //     await this.$axios.$get(url)
-      //   }
-      // } catch (e) {
-      //   console.error(e)
-      // }
+      let type, value
 
-      return new Promise(resolve => setTimeout(resolve, 1000))
-    },
+      switch (action.text) {
+        case 'понял':
+          type = 'skip'
+          break
+        case 'принять':
+          type = 'ok'
+          break
+        case 'отклонить':
+          type = 'cancel'
+          break
+        case 'продать':
+          type = 'sell'
+          value = this.controls.value
+          break
+        case 'купить':
+          type = 'buy'
+          value = this.controls.value
+          break
+      }
 
-    pullEvent() {
-      // try {
-      //   return this.$axios.$get('/api/get-next-event')
-      // } catch (e) {
-      //   console.error(e)
-      // }
-
-      return new Promise(resolve => {
-        setTimeout(() => resolve({
-          text: 'Из новостей узнали что завтра будет пиздец',
-          controls: {
-            min: 10,
-            max: 44,
-          },
-          actions: [
-            {text: 'Жить дальше'},
-            {text: 'Продать все'}
-          ]
-        }), 1000)
-      })
+      return this.$api.gamePushEventReaction(type, value)
     }
   }
 }
