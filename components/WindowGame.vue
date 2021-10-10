@@ -4,6 +4,7 @@
 
     <v-card
       class='my-4 pa-4 flex-grow-1'
+      :class='$style["card-wrapper"]'
       elevation='2'
     >
       <v-container
@@ -19,7 +20,6 @@
           <v-slider
             v-model='controls.value'
             label='Кол-во:'
-            thumb-label='always'
             step='10'
             :min='event.controls.min'
             :max='event.controls.max'
@@ -29,9 +29,11 @@
                 v-model='controls.value'
                 hide-details
                 single-line
+                solo
                 type='number'
                 class='mt-0 pt-0'
-                style='width: 30px'
+                style='width: 60px'
+                :class='$style.value'
               ></v-text-field>
             </template>
           </v-slider>
@@ -56,6 +58,7 @@
           >
             <v-btn
               block
+              rounded
               color='primary'
               :disabled='isActionsDisabled'
               @click='clickAction(btn)'
@@ -67,6 +70,8 @@
 
         <div class='d-flex'>
           <v-btn
+            v-if='isSkipButtonVisible'
+            rounded
             class='flex-grow-1'
             color='secondary'
             :disabled='isActionsDisabled'
@@ -94,6 +99,16 @@ export default {
       controls: {
         value: 0
       }
+    }
+  },
+
+  computed: {
+    isSkipButtonVisible() {
+      if (this.event.actions) {
+        return !!this.event.actions.find(action => action.text !== 'понял')
+      }
+
+      return false
     }
   },
 
@@ -158,6 +173,16 @@ export default {
 
 .root {
   gap: 4 * $spacer;
+  background: #D8E6FC;
+}
+
+.card-wrapper {
+  border-radius: 7 * $spacer !important;
+}
+
+.value {
+  position: relative;
+  top: - 12px;
 }
 
 .card {
@@ -171,5 +196,11 @@ export default {
 .action {
   box-sizing: border-box;
   flex-basis: 50%;
+}
+</style>
+
+<style lang='scss'>
+.v-input__slot {
+  box-shadow: none !important;
 }
 </style>

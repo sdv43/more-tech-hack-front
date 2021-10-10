@@ -7,6 +7,8 @@
         Привет!
       </p>
 
+      <img src='@/assets/images/welcome.png' width='80%' class='my-2'>
+
       <p>
         В этой игре ты научишься управлять своими
         финансами и не бояться ивестировать
@@ -14,7 +16,7 @@
     </div>
 
     <div class='d-flex'>
-      <v-btn x-large color='primary' class='ma-4 flex-grow-1' @click='$router.push("/game")'>Начать</v-btn>
+      <v-btn x-large color='primary' rounded class='ma-4 flex-grow-1' @click='$router.push("/game")'>Начать</v-btn>
     </div>
   </v-container>
 </template>
