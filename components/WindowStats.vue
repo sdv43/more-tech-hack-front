@@ -50,6 +50,13 @@
             Выгодная покупка акций
           </a>
         </v-card>
+
+        <v-card elevation='2' class='px-4 py-6' :class='$style["bg-three"]'>
+          <a href='https://www.vtb.ru/personal/investicii/iis/' target='_blank'
+             class='white--text text-decoration-none'>
+            Особый счёт для инвестиций
+          </a>
+        </v-card>
       </div>
     </div>
 
@@ -98,5 +105,10 @@ export default {
   background: #DAD299; /* fallback for old browsers */
   background: linear-gradient(to left, #B0DAB9, #DAD299); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+}
+
+.bg-three {
+  background: #c21500;  /* fallback for old browsers */
+  background: linear-gradient(to left, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 </style>
