@@ -23,6 +23,7 @@ export const getters = {
 export const mutations = {
   setUserToken(state, payload) {
     state.user.token = payload
+    localStorage.setItem('user-token', payload)
   },
 
   setUserStatus(state, payload) {

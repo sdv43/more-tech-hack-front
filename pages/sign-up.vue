@@ -6,11 +6,13 @@
           {{ error }}
         </v-alert>
 
-        <v-text-field v-model='name' outlined label='Имя'/>
+        <v-text-field v-model='name' outlined label='Имя' />
 
-        <v-text-field v-model='email' outlined label='Email'/>
+        <v-text-field v-model='email' outlined label='Email' />
 
-        <v-text-field v-model='password' type='password' outlined label='Пароль'/>
+        <v-text-field v-model='number' outlined label='Номер телефона' />
+
+        <v-text-field v-model='password' type='password' outlined label='Пароль' />
 
         <v-btn block x-large color='primary' @click='signUp'>Создать аккаунт</v-btn>
 
@@ -32,18 +34,24 @@ export default {
     return {
       name: null,
       email: null,
+      number: null,
       password: null,
       error: null
     }
   },
 
   methods: {
-    signUp() {
+    async signUp() {
       try {
-        // todo make request to backend and save returned token
+        const token = await this.$api.userSignUp({
+          name: this.name,
+          email: this.email,
+          number: this.number,
+          password: this.password
+        })
 
-        throw new Error('signUp() method not implemented')
-
+        this.$store.commit('setUserToken', token)
+        await this.$router.push('/welcome')
       } catch (e) {
         this.error = e.message
       }

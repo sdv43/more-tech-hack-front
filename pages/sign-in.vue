@@ -32,26 +32,23 @@ export default {
 
   data() {
     return {
-      email: null,
-      password: null,
+      email: 'demo',
+      password: 'demo',
       error: null,
       logoPath: logo
     }
   },
 
   methods: {
-    signIn() {
+    async signIn() {
       try {
-        if (this.email === 'demo' && this.password === 'demo') {
-          const token = 'demo-token'
+        const token = await this.$api.userSignIn({
+          email: this.email,
+          password: this.password
+        })
 
-          localStorage.setItem('user-token', token)
-
-          this.$store.commit('setUserToken', token)
-          this.$router.push('/welcome')
-        } else {
-          throw new Error('signIn() method not implemented')
-        }
+        this.$store.commit('setUserToken', token)
+        await this.$router.push('/welcome')
       } catch (e) {
         this.error = e.message
       }

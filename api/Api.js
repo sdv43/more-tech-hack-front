@@ -6,5 +6,19 @@ export default class Api {
     this.$axios.setToken(token)
   }
 
+  userSignIn({ email, password }) {
+    return this.$axios.$post('/api/signIn', {
+      email,
+      password
+    })
+  }
 
+  userSignUp({ name, email, number, password }) {
+    return this.$axios.$post('/api/signUp', {
+      name,
+      email,
+      number,
+      password
+    })
+  }
 }
