@@ -8,11 +8,17 @@ export const state = () => ({
         { text: 'Купиль акции', date: '10.10' },
         { text: 'Продал акции', date: '09.10' },
         { text: 'Упал рубль', date: '09.10' },
-        { text: 'Спустилось колесо на велосипеде', date: '05.10' },
+        { text: 'Спустилось колесо на велосипеде', date: '05.10' }
       ]
     }
   }
 })
+
+export const getters = {
+  userToken(state) {
+    return state.user.token
+  }
+}
 
 export const mutations = {
   setUserToken(state, payload) {

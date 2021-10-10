@@ -28,11 +28,12 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/assets/font.scss',
+    '@/assets/font.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/api.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -45,7 +46,7 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify',
+    '@nuxtjs/vuetify'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -53,7 +54,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
+    '@nuxtjs/pwa'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -65,9 +66,9 @@ export default {
       enabled: false,
       dev: true,
       runtimeCaching: [
-        {urlPattern: '/favicon-32x32.png'},
-        {urlPattern: 'https://cdn.jsdelivr.net/.*'},
-        {urlPattern: 'https://fonts.googleapis.com/.*'},
+        { urlPattern: '/favicon-32x32.png' },
+        { urlPattern: 'https://cdn.jsdelivr.net/.*' },
+        { urlPattern: 'https://fonts.googleapis.com/.*' }
       ]
     },
     icon: {
@@ -80,7 +81,7 @@ export default {
       description: 'С приложением EasyMoney Вы попадете в увлекательный мир инвестиций, где сможете научиться инвестировать правильно и прибыльно',
       lang: 'en',
       scope: '/',
-      start_url: '/',
+      start_url: '/'
     }
   },
 
@@ -100,13 +101,12 @@ export default {
           success: colors.green.accent3
         },
         light: {
-          primary: '#003ae5',
+          primary: '#003ae5'
         }
       }
     }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  build: {}
 }
