@@ -11,24 +11,6 @@
 <script>
 export default {
   name: 'TopBar',
-
-  mounted() {
-    this.$root.$on('update-status', this.updateStatus)
-  },
-
-  methods: {
-    updateStatus() {
-      // try {
-      //   this.$store.state.user.status = await this.$axios.$get('/api/status')
-      // } catch (e) {
-      //   console.error(e)
-      // }
-
-      this.$store.commit('setUserStatus', {
-        money: this.$store.state.user.status.money+10
-      })
-    }
-  }
 }
 </script>
 
