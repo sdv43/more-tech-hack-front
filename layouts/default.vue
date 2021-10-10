@@ -8,6 +8,10 @@
 
 <script>
 export default {
-  middleware: ['check-auth']
+  middleware: ['check-auth'],
+
+  async created() {
+    this.$store.commit('setUserStatus', await this.$api.userStatus())
+  }
 }
 </script>

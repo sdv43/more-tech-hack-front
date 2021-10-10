@@ -21,4 +21,8 @@ export default class Api {
       password
     })
   }
+
+  userStatus() {
+    return this.$axios.$get('/api/status')
+  }
 }
