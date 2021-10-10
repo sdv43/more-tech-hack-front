@@ -15,11 +15,12 @@
           {{ event.text }}
         </p>
 
-        <div v-if='event.controls' class='my-8'>
+        <div v-if='event.controls && event.controls.min' class='my-8'>
           <v-slider
             v-model='controls.value'
             label='Кол-во:'
             thumb-label='always'
+            step='10'
             :min='event.controls.min'
             :max='event.controls.max'
           >
@@ -69,6 +70,7 @@
             class='flex-grow-1'
             color='secondary'
             :disabled='isActionsDisabled'
+            @click='clickAction({text: "понял"})'
           >
             Пропустить ход
           </v-btn>
@@ -110,6 +112,10 @@ export default {
 
         this.event = null
         this.event = await this.$api.gamePullEvent()
+
+        if (!this.event) {
+          await this.$router.push('/finish')
+        }
       } catch (e) {
         this.isActionsDisabled = false
         alert(e.message)
@@ -122,9 +128,11 @@ export default {
       switch (action.text) {
         case 'понял':
           type = 'skip'
+          value = this.event.controls ? this.event.controls.value : undefined
           break
         case 'принять':
           type = 'ok'
+          value = this.event.controls ? this.event.controls.value : undefined
           break
         case 'отклонить':
           type = 'cancel'
